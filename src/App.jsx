@@ -1,4 +1,8 @@
+// Place your logo file at: src/assets/logo.png (exact file name & case)
+// This version bundles the image via import so paths work on GitHub Pages
+
 import ContactForm from "./components/ContactForm";
+import logo from "./assets/logo.png"; // <-- add this line and ensure the file exists
 
 export default function App() {
   // Brand palette extracted from the provided logo (RGB):
@@ -26,13 +30,13 @@ export default function App() {
       <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/80 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
           <div className="flex items-center gap-3">
-            {/* Inline logo from the uploaded PNG (data URL) */}
+            {/* Bundled logo import avoids path issues on GitHub Pages */}
             <img
               alt="Resilient logo"
               width={44}
               height={44}
               className="rounded-lg ring-1 ring-slate-200"
-              src="/hlogo.png" // (truncated by editor at render; full data URL inserted on creation)
+              src={logo}
             />
             <div className="leading-tight">
               <div className="text-xl font-extrabold tracking-tight" style={{ color: brand.primary }}>RESILIENT</div>
@@ -182,26 +186,7 @@ export default function App() {
           <div className="rounded-2xl bg-white p-6 ring-1 ring-slate-200 shadow-sm">
             <h2 className="text-2xl font-extrabold" style={{ color: brand.primary }}>Let’s build together</h2>
             <p className="mt-2 text-slate-600">Share a few details and we’ll get back to you within 2 business days.</p>
-            <form onSubmit={(e) => e.preventDefault()} className="mt-6 grid gap-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="grid gap-1">
-                  <label htmlFor="name" className="text-sm font-medium">Name</label>
-                  <input id="name" type="text" className="rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-400" placeholder="Your full name" />
-                </div>
-                <div className="grid gap-1">
-                  <label htmlFor="email" className="text-sm font-medium">Email</label>
-                  <input id="email" type="email" className="rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-400" placeholder="name@company.com" />
-                </div>
-              </div>
-              <div className="grid gap-1">
-                <label htmlFor="message" className="text-sm font-medium">How can we help?</label>
-                <textarea id="message" rows={5} className="rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-400" placeholder="Tell us about your project, timeline and goals…" />
-              </div>
-              <div className="flex items-center justify-between">
-                <p className="text-xs text-slate-500">By submitting, you agree that we may contact you about your inquiry.</p>
-                <button className="rounded-2xl px-5 py-2 text-white font-semibold hover:shadow transition active:scale-[.99]" style={{ background: brand.primary }}>Send</button>
-              </div>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </section>
@@ -241,9 +226,7 @@ function ObjectiveCard({ index, title, bullets, brand }) {
       </div>
       <ul className="mt-3 space-y-2 text-sm text-slate-700">
         {bullets.map((b, i) => (
-          <li key={i} className="pl-4 relative before:absolute before:left-0 before:top-2 before:h-1.5 before:w-1.5 before:rounded-full" style={{ ['--tw-before-bg'.toString()]: brand.accent }}>
-            <span className="before:content-[''] before:bg-slate-300">{b}</span>
-          </li>
+          <li key={i} className="pl-4 relative before:absolute before:left-0 before:top-2 before:h-1.5 before:w-1.5 before:rounded-full before:bg-slate-300">{b}</li>
         ))}
       </ul>
     </div>
