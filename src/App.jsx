@@ -32,7 +32,7 @@ export default function App() {
               width={44}
               height={44}
               className="rounded-lg ring-1 ring-slate-200"
-              src="/logo.png" // (truncated by editor at render; full data URL inserted on creation)
+              src="/hlogo.png" // (truncated by editor at render; full data URL inserted on creation)
             />
             <div className="leading-tight">
               <div className="text-xl font-extrabold tracking-tight" style={{ color: brand.primary }}>RESILIENT</div>
