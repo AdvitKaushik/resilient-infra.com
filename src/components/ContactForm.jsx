@@ -10,7 +10,6 @@ export default function ContactForm() {
     const form = e.currentTarget;
     const data = new FormData(form);
     data.append("_subject", "New inquiry from Resilient Infrastructure website");
-    data.append("to", "Info.resilientinfra@gmail.com"); // set recipient in Formspree too
 
     const res = await fetch("https://formspree.io/f/xyzplydq", {
       method: "POST",
@@ -42,14 +41,12 @@ export default function ContactForm() {
         <label htmlFor="message" className="text-sm font-medium">How can we help?</label>
         <textarea id="message" name="message" rows={5} required className="rounded-xl border px-3 py-2" />
       </div>
-
       <div className="flex items-center justify-between">
         <p className="text-xs text-slate-500">By submitting, you agree we may contact you.</p>
         <button className="rounded-2xl px-5 py-2 text-white font-semibold" style={{ background: '#1D5788' }}>
           {status === "sending" ? "Sending…" : "Send"}
         </button>
       </div>
-
       {status === "sent" && <p className="text-green-600 text-sm">Thanks! We’ll get back to you shortly.</p>}
       {status === "error" && <p className="text-red-600 text-sm">Something went wrong. Please try again.</p>}
     </form>
